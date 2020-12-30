@@ -11,6 +11,7 @@ class Post(models.Model):
         on_delete = models.CASCADE
     )
     date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to = "images/", default = "images/post-bg.jpg")
     
     class Meta:
         ordering = ["-date"]
