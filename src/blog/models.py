@@ -8,7 +8,7 @@ class Post(models.Model):
     subtitle = models.CharField(max_length = 100)
     content = RichTextField()
     author = models.ForeignKey(
-        "auth.User",
+        "auth.User" or "2",
         on_delete = models.CASCADE
     )
     date = models.DateTimeField(auto_now_add=True)

@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.core.paginator import Paginator
+from .forms import PostForm
+from django.contrib import messages 
 
 
 def HomePage(request):
@@ -26,3 +28,16 @@ def PostDetail(request, id):
         "post" : post
     }
     return render(request, "post.html", context)
+
+def AddPost(request):
+    form = PostForm()
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "You have sent your message successfully ")
+            return redirect("add-post")
+    context = {
+        "form" : form
+    }
+    return render(request, "add_post.html", context)

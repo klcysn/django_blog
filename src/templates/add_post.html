@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  
+<header class="masthead" style="background-image: url('{% static "img/contact-bg.jpg" %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Contact Me</h1>
+          <span class="subheading">Have questions? I have answers.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="form-group">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <div class="alert alert-success">
+            {{message}}
+          </div>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="control-group">
+          <!-- <div class="form-group floating-label-form-group controls">
+            <label>Author</label>
+            <input type="text" class="form-control" placeholder="Author" name="author" required data-validation-required-message="Please enter name.">
+            <p class="help-block text-danger"></p>
+          </div> -->
+          <div class="form-group floating-label-form-group controls">
+            <label>Title</label>
+            <input type="text" class="form-control" placeholder="Title" name="title" required data-validation-required-message="Please enter your title.">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Sub-Title</label>
+            <input type="text" class="form-control" placeholder="Sub-title" name="subtitle" required data-validation-required-message="Please enter your sub-title.">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Image</label>
+            <input type="file" class="form-control" placeholder="Images" name="image">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Content</label>
+            <textarea rows="5" class="form-control" placeholder="Content" name="content" required data-validation-required-message="Please enter your content."></textarea>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<hr>
+{% endblock content %}
