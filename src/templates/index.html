@@ -25,7 +25,7 @@
     <div class="col-lg-8 col-md-10 mx-auto">
       {% for post in posts %}
       <div class="post-preview">
-        <a href="post.html">
+        <a href="{% url 'post' post.id %}">
           <h2 class="post-title">
             {{post.title}}
           </h2>
@@ -35,7 +35,7 @@
         </a>
         <p class="post-meta">Posted by
           <a href="#">{{post.author | title}}</a>
-          {{post.date}}</p>
+          {{post.date | date:"F d, Y" }}</p>
       </div>
       <hr>
       {% endfor %}
@@ -50,6 +50,3 @@
 
 <hr>
 {% endblock content %}
-  
-
- 
